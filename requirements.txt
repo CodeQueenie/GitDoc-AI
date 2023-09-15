@@ -1,0 +1,11 @@
+langchain>=0.0.247
+streamlit>=1.25
+langsmith>=0.0.23
+nemoguardrails==0.4.0
+streamlit-feedback
+PyPDF2
+openai
+tiktoken
+faiss-cpu
+python-docx
+python-dotenv
