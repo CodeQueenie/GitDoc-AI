@@ -55,11 +55,6 @@ $ source env/bin/activate
 streamlit run 🏠_Home.py
 ```
 
-### Loading the Vectorstore 🗃️
-
-1. Keep you data or documentations in the docs/aws folder
-2. Run the command - `python load_knowledge.py`
-
 ## Resources 🔧
 
 - [langchain](https://python.langchain.com/en/latest/index.html)
