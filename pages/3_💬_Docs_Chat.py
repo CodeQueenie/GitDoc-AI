@@ -18,7 +18,7 @@ def main():
         vectorstore = pickle.load(uploaded_file)
         st.session_state['knowledge_base'] = vectorstore
 
-    if st.session_state['knowledge_base'] is not None:
+    if st.session_state['knowledge_base'] is not None and uploaded_file is not None:
         display_chat(qa_chain)
 
 

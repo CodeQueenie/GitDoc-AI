@@ -21,9 +21,6 @@ def set_selected_model_option(selected_model_option: str):
 def sidebar(isModel=True):
     with st.sidebar:
         st.markdown("## **Instructions** 🔧")
-        st.markdown(
-            "Enter your [OpenAI API key](https://platform.openai.com/account/api-keys) below 🔑\n"
-        )
         api_key_input = st.text_input(
             "OpenAI API Key",
             type="password",
@@ -41,7 +38,7 @@ def sidebar(isModel=True):
             if selected_model_option:
                 set_selected_model_option(selected_model_option)
 
-        with st.expander("More settings", expanded=False):
+        with st.expander("Settings", expanded=False):
             col1, col2 = st.columns(2)
             with col1:
                 st.checkbox('Memory', value=False, key='memory')

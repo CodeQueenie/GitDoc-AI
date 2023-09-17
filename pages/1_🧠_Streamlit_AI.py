@@ -16,10 +16,9 @@ def main():
     sidebar()
     st.header('🧠 Streamlit AI')
     st.caption("Any Q/A related to Streamlit!")
-    with st.expander('⚠️ Disclaimer', expanded=True):
-        st.markdown("For prototype we have used only Streamlit github docs for the context of the chatbot.")
-        st.markdown("We have used OpenAI API for the embeddings and FAISS for the vector store.")
-
+    with st.expander('⚠️ Note', expanded=True):
+        st.markdown("We have used only [Streamlit github docs](https://github.com/streamlit/docs) for the knowledge base of the chatbot.")
+        
     if st.session_state['knowledge_base'] is not None:
         display_chat(qa_chain)
 
