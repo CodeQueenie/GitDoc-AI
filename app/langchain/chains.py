@@ -20,7 +20,7 @@ def initialise_qa_chain():
 
     if st.session_state["is_guardrail"] and "guardrail_qa_chain" not in st.session_state:
         search_index = st.session_state['knowledge_base']
-        config = RailsConfig.from_path("src/config")
+        config = RailsConfig.from_path("app/config")
         app = LLMRails(config)
         QA_PROMPT = question_answer_prompt()
         chain_type_kwargs = {"prompt": QA_PROMPT}

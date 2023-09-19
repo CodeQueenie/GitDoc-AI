@@ -26,10 +26,10 @@ def display_source(document):
     
     with st.expander("Source Documents"):
         col1, col2, col3, col4 = st.columns(4)
-        col1.markdown("**Page: " + str(metadata_list[0]["page"]) + "** *" + metadata_list[0]["file"] + "*" + " Score: " + str(metadata_list[0]["score"]))
-        col2.markdown("**Page: " + str(metadata_list[1]["page"]) + "** *" + metadata_list[1]["file"] + "*" + " Score: " + str(metadata_list[1]["score"]))
-        col3.markdown("**Page: " + str(metadata_list[2]["page"]) + "** *" + metadata_list[2]["file"] + "*" + " Score: " + str(metadata_list[2]["score"]))
-        col4.markdown("**Page: " + str(metadata_list[3]["page"]) + "** *" + metadata_list[3]["file"] + "*" + " Score: " + str(metadata_list[3]["score"]))
+        col4.markdown("**Page: " + str(metadata_list[0]["page"]) + "** *" + metadata_list[0]["file"] + "*" + " Score: " + str(metadata_list[0]["score"]))
+        col3.markdown("**Page: " + str(metadata_list[1]["page"]) + "** *" + metadata_list[1]["file"] + "*" + " Score: " + str(metadata_list[1]["score"]))
+        col2.markdown("**Page: " + str(metadata_list[2]["page"]) + "** *" + metadata_list[2]["file"] + "*" + " Score: " + str(metadata_list[2]["score"]))
+        col1.markdown("**Page: " + str(metadata_list[3]["page"]) + "** *" + metadata_list[3]["file"] + "*" + " Score: " + str(metadata_list[3]["score"]))
 
 def display_chat(chain=qa_chain, input_format=None, output_format=None):
     initialise()

@@ -13,7 +13,7 @@ def main():
     sidebar()
     initialise()
     st.header('💬 Docs Chat')
-    uploaded_file = st.file_uploader("Upload your knowledge file", type=["pkl"])
+    uploaded_file = st.file_uploader("Upload your knowledge file from [Build Knowledge](https://gitdoc-ai.streamlit.app/Build_Knowledge)", type=["pkl"])
     if uploaded_file is not None:
         vectorstore = pickle.load(uploaded_file)
         st.session_state['knowledge_base'] = vectorstore

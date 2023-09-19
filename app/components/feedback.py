@@ -28,10 +28,10 @@ def user_feedback(client):
             )
             if correction:
                 st.session_state.feedback_update = {
-                    "correction": correction,
+                    "comment": correction,
                     "feedback_id": feedback_id,
                 }
-        if score:
+        else:
             comment = st.text_input(
                 label="Any additional information you'd like to share !",
                 key=f"comment_{feedback_id}",

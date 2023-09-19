@@ -15,11 +15,12 @@ def main():
         page_title="Hello",
         page_icon="👋",
     )
-    st.write("# 🚀 GitDoc AI 📚")
+    st.write("# 📚 GitDoc AI")
     st.markdown(
     """ 
-        > GitDoc is your ultimate GitHub Documentation Explorer! It's your trusty sidekick for navigating through the vast world of open-source projects, making code exploration and documentation retrieval a breeze. 🚀
-            
+        GitDoc is your ultimate GitHub Documentation Explorer! It's your trusty sidekick for navigating through the vast world of open-source projects, making code exploration and documentation retrieval a breeze. 
+        > ### Check out GitDoc AI over [Streamlit](https://gitdoc-ai.streamlit.app/Streamlit_AI)
+
         ## Key Features
         - 📖 **Rich Documentation Access:** Instantly access project documentation, READMEs, code snippets, and more.
         - 🌟 **Interactive Chat:** Engage with GitDoc for info, questions, and code insights.
@@ -27,15 +28,11 @@ def main():
         - 🚀 **Boost Your Development:** Speed up coding, troubleshoot, and stay updated.
         - 🌈 **User-Friendly Interface:** Enjoy a smooth coding experience.
 
-        ## Setup your own GitDoc AI?
+        ## Try your own GitDoc AI?
         1. 📝 Create a knowledge base at [Build Knowledge](https://gitdoc-ai.streamlit.app/Build_Knowledge)
-            - Enter the GitHub repository URL
-            - Download and upload github repo as zip.
         2. 🤖 Connect a chatbot at [Docs Chat](https://gitdoc-ai.streamlit.app/Docs_Chat)
-            - Upload your create knowledge base file.
-            - Start chatting with your own GitDoc AI.
 
-        Experience the future of GitHub documentation exploration with GitDoc - Where curiosity meets code! 🚀📚💬
+        #### Github Repo : [GitDoc AI](https://github.com/SSK-14/GitDoc-AI)
     """
     )
 

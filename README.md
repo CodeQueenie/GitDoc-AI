@@ -1,15 +1,13 @@
-# 🚀 GitDoc AI 📚
+# GitDoc AI 📚
 
-> GitDoc is your ultimate GitHub Documentation Explorer! It's your trusty sidekick for navigating through the vast world of open-source projects, making code exploration and documentation retrieval a breeze. 🚀
+> Created the GitDoc AI app to improve knowledge retrieval and support from documentation. Users can effortlessly engage with their chosen documentation or GitHub repositories through a Language Model (LLM).
 
-## Key Features
-   - 📖 **Rich Documentation Access:** Instantly access detailed project documentation, READMEs, code snippets, and more.
-   - 💬 **Interactive Chat:** Engage in dynamic conversations with GitDoc to find the information you need, ask questions, and get code-related insights.
-   - 🔒 **Secure Access:** Your data privacy is our priority. GitDoc ensures a secure and seamless browsing experience.
-   - 🧠 **AI-Powered Insights:** Powered by advanced Language Models, GitDoc provides intelligent code recommendations and context-aware responses.
-   - 🚀 **Boost Your Development:** Speed up your coding workflow, troubleshoot issues, and stay up-to-date with the latest project changes.
-   - 🌟 **Join the GitDoc Community:** Connect with fellow developers, share your expertise, and collaborate on projects within the GitDoc ecosystem.
-   - 🌈 **User-Friendly Interface:** A clean, intuitive, and responsive interface ensures that your coding experience is smooth and enjoyable.
+## Key Features 💡
+- 📖 **Rich Documentation Access:** Instantly access project documentation, READMEs, code snippets, and more.
+- 🌟 **Interactive Chat:** Engage with GitDoc for info, questions, and code insights.
+- 🧠 **AI-Powered Insights:** Intelligent code tips with advanced Language Models.
+- 🚀 **Boost Your Development:** Speed up coding, troubleshoot, and stay updated.
+- 🌈 **User-Friendly Interface:** Enjoy a smooth coding experience.
 
 Experience the future of GitHub documentation exploration with GitDoc - Where curiosity meets code! 🚀📚💬
 

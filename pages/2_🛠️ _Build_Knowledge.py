@@ -1,5 +1,5 @@
 import streamlit as st
-from app.components.uploader import load_pdf
+from app.components.uploader import load_docs
 from app.components.sidebar import sidebar
 from app.utils.load_knowledge import create_vector
 import pickle
@@ -42,16 +42,20 @@ def create_vectorstore(uploaded_file):
 def main():
     st.set_page_config(page_title="Build knowledge", page_icon="🛠️")
     initialise()
-    sidebar()
+    sidebar(is_model=False)
     st.header('🛠️ Build your knowledge base')
 
     if st.session_state['vectorstore'] is None:
         with st.form("my_form"):
+            st.write("""
+             1. Get the documentation repo url which is used for returning source links.
+             2. Download the code as a zip file, We will use only the pdf and md files for knowledge base creation.
+             """)
             if st.session_state['vectorstore'] is None:
                 document_url = st.text_input(
                 "Enter the documentation repo url",
                 placeholder="Example: https://github.com/streamlit/docs")
-                uploaded_file = load_pdf()
+                uploaded_file = load_docs()
 
                 submitted = st.form_submit_button("Create knowledge base")
                 if submitted and uploaded_file is not None and document_url != "":
