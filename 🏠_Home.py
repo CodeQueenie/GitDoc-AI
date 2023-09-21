@@ -12,8 +12,8 @@ def setup_langsmith():
 def main():
     setup_langsmith()
     st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
+        page_title="Home",
+        page_icon="🏠",
     )
     st.write("# 📚 GitDoc AI")
     st.caption("Your ultimate GitHub Documentation Explorer!")

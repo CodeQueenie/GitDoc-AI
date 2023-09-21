@@ -7,9 +7,9 @@ import os
 def load_docs():
     col1, col2 = st.columns(2)
     with col1:
-        st.slider('Chunk Size', min_value=100, max_value=2000, value=500, key="chunk_size")
+        st.slider('Chunk Size', min_value=100, max_value=2000, value=500, key="chunk_size", help="The length of individual data segments or blocks.")
     with col2:
-        st.slider('Chunk Overlap', min_value=0, max_value=500, value=100, key="chunk_overlap")
+        st.slider('Chunk Overlap', min_value=0, max_value=500, value=100, key="chunk_overlap", help="Degree of overlap between adjacent segments.")
 
     uploaded_file = st.file_uploader("If repo is private upload zip file (Optional)", type=["zip"])
     if uploaded_file is not None:

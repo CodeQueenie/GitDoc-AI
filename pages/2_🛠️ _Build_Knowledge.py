@@ -23,7 +23,7 @@ def main():
              1. Enter the documentation repo url.
              2. If repo is private download repo as zip file and upload.
              """)
-            st.write("Note: We will use only the pdf and md files for knowledge base creation.")
+            st.caption("Note: We will use only the pdf and md files for knowledge base creation.")
             if st.session_state['vectorstore'] is None:
                 col1, col2 = st.columns([3, 1])
                 with col1:
@@ -39,12 +39,15 @@ def main():
 
                 submitted = st.form_submit_button("Create knowledge base")
                 if submitted and document_url != "":
-                    st.session_state['document_url'] = document_url
-                    if uploaded_file is not None:
-                        unzip_path, branch = unzip_file(uploaded_file)
-                    else:
-                        unzip_path, branch = load_github_docs(document_url, branch)
-                    st.session_state['vectorstore'] = create_vectorstore(unzip_path, branch)
+                    try:
+                        st.session_state['document_url'] = document_url
+                        if uploaded_file is not None:
+                            unzip_path, branch = unzip_file(uploaded_file)
+                        else:
+                            unzip_path, branch = load_github_docs(document_url, branch)
+                        st.session_state['vectorstore'] = create_vectorstore(unzip_path, branch)
+                    except Exception as e:
+                        st.error(e)
 
         if st.session_state['vectorstore'] is not None:
             build_form.empty()

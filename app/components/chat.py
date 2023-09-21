@@ -23,13 +23,16 @@ def initialise():
 
 def display_source(document):
     metadata_list = [{**doc[0].metadata, "score":doc[1]} for doc in document]
-    
-    with st.expander("Source Documents"):
-        col1, col2, col3, col4 = st.columns(4)
-        col4.markdown("**Page: " + str(metadata_list[0]["page"]) + "** *" + metadata_list[0]["file"] + "*" + " Score: " + str(metadata_list[0]["score"]))
-        col3.markdown("**Page: " + str(metadata_list[1]["page"]) + "** *" + metadata_list[1]["file"] + "*" + " Score: " + str(metadata_list[1]["score"]))
-        col2.markdown("**Page: " + str(metadata_list[2]["page"]) + "** *" + metadata_list[2]["file"] + "*" + " Score: " + str(metadata_list[2]["score"]))
-        col1.markdown("**Page: " + str(metadata_list[3]["page"]) + "** *" + metadata_list[3]["file"] + "*" + " Score: " + str(metadata_list[3]["score"]))
+    with st.expander("Reference Links"):
+        cols = st.columns(4) 
+        for i in range(3, -1, -1):
+            if metadata_list[i] is not None:
+                col = cols[3 - i]
+                page_number = f"**Page: {metadata_list[i]['page']}** " if metadata_list[i]['page'] != 1 else ""
+                caption = f"{page_number}[{metadata_list[i]['file'].split('/')[-1]}]({metadata_list[i]['file']})"
+                col.caption(caption)
+                # col.caption(f"{metadata_list[i]['score']}")   // uncomment to display score
+
 
 def display_chat(chain=qa_chain, input_format=None, output_format=None):
     initialise()
@@ -40,14 +43,19 @@ def display_chat(chain=qa_chain, input_format=None, output_format=None):
                     if message["source"] is not None:
                         display_source(message["source"])
 
-    if prompt := st.chat_input("Enter you question..."):
+    if prompt := st.chat_input("Enter your question..."):
         user_content = "```"+input_format+"\n" + prompt + "\n```" if input_format is not None else prompt
         st.session_state.messages.append({"role": "user", "content": user_content})
         with st.chat_message("user"):
             st.markdown(user_content)
         
         reset_feedback()
-        response, source = chain(prompt, runnable_config)
+        
+        try:
+            response, source = chain(prompt, runnable_config)
+        except Exception as e:
+            st.error(e)
+            return
 
         with st.chat_message("assistant"):
             assistant_content = "```"+output_format+"\n" + response + "\n```" if output_format is not None else response
