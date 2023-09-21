@@ -16,11 +16,14 @@ def main():
     sidebar()
     st.header('🧠 Streamlit AI')
     st.caption("Any Q/A related to Streamlit!")
-    with st.expander('⚠️ Note', expanded=True):
-        st.markdown("We have used only [Streamlit github docs](https://github.com/streamlit/docs) for the knowledge base of the chatbot.")
+    note = st.empty()
+    with note.expander('⚠️ Note', expanded=True):
+        st.info("We have used only [Streamlit github docs](https://github.com/streamlit/docs) for the knowledge base of the chatbot.")
         
     if st.session_state['knowledge_base'] is not None:
         display_chat(qa_chain)
+        if st.session_state['messages']:
+            note.empty()
 
 
 if __name__ == "__main__":

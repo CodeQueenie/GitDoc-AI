@@ -13,13 +13,16 @@ def main():
     sidebar()
     initialise()
     st.header('💬 Docs Chat')
-    uploaded_file = st.file_uploader("Upload your knowledge file from [Build Knowledge](https://gitdoc-ai.streamlit.app/Build_Knowledge)", type=["pkl"])
+    uploader = st.empty()
+    uploaded_file = uploader.file_uploader("Upload your knowledge file from [Build Knowledge](/Build_Knowledge)", type=["pkl"])
     if uploaded_file is not None:
         vectorstore = pickle.load(uploaded_file)
         st.session_state['knowledge_base'] = vectorstore
 
     if st.session_state['knowledge_base'] is not None and uploaded_file is not None:
         display_chat(qa_chain)
+        if st.session_state['messages']:
+            uploader.empty()
 
 
 if __name__ == "__main__":

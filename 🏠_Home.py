@@ -16,25 +16,24 @@ def main():
         page_icon="👋",
     )
     st.write("# 📚 GitDoc AI")
+    st.caption("Your ultimate GitHub Documentation Explorer!")
+    st.write("It's your trusty sidekick for navigating through the vast world of open-source projects, making code exploration and documentation retrieval a breeze.")
+    st.info('Check out GitDoc AI over [Streamlit](/Streamlit_AI)')
     st.markdown(
     """ 
-        GitDoc is your ultimate GitHub Documentation Explorer! It's your trusty sidekick for navigating through the vast world of open-source projects, making code exploration and documentation retrieval a breeze. 
-        > ### Check out GitDoc AI over [Streamlit](https://gitdoc-ai.streamlit.app/Streamlit_AI)
-
-        ## Key Features
+        ### Key Features
         - 📖 **Rich Documentation Access:** Instantly access project documentation, READMEs, code snippets, and more.
         - 🌟 **Interactive Chat:** Engage with GitDoc for info, questions, and code insights.
         - 🧠 **AI-Powered Insights:** Intelligent code tips with advanced Language Models.
         - 🚀 **Boost Your Development:** Speed up coding, troubleshoot, and stay updated.
         - 🌈 **User-Friendly Interface:** Enjoy a smooth coding experience.
 
-        ## Try your own GitDoc AI?
-        1. 📝 Create a knowledge base at [Build Knowledge](https://gitdoc-ai.streamlit.app/Build_Knowledge)
-        2. 🤖 Connect a chatbot at [Docs Chat](https://gitdoc-ai.streamlit.app/Docs_Chat)
-
-        #### Github Repo : [GitDoc AI](https://github.com/SSK-14/GitDoc-AI)
+        ### Try Now
+        1. 📝 Create a knowledge base at [Build Knowledge](/Build_Knowledge)
+        2. 🤖 Connect a chatbot at [Docs Chat](/Docs_Chat)
     """
     )
+    st.write("Github Repo : [GitDoc AI](https://github.com/SSK-14/GitDoc-AI)")
 
 if __name__ == "__main__":
     main()
