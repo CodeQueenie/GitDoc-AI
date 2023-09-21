@@ -1,6 +1,7 @@
 import os
-import PyPDF2
+from PyPDF2 import PdfReader
 import tiktoken
+import zipfile
 import streamlit as st
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -25,13 +26,13 @@ def process_md_file(md_file, path):
 
 def process_pdf_file(pdf_file_path, relative_path):
     pdfFileObj = open(pdf_file_path, 'rb')
-    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    num_pages = pdfReader.numPages
+    pdfReader = PdfReader(pdfFileObj)
+    num_pages = len(pdfReader.pages)
     chunks = []
 
     for i in range(num_pages):
-        pageObj = pdfReader.getPage(i)
-        text = pageObj.extractText()
+        pageObj = pdfReader.pages[i]
+        text = pageObj.extract_text()
         text_splitter = get_text_splitter()
         chunks.extend(text_splitter.create_documents([text], metadatas=[{"page": i, "file": relative_path}]))
 
@@ -66,8 +67,33 @@ def process_folder(folder, branch):
 
 def create_vector(folder_path, branch = "main"):
     chunks = process_folder(folder_path, branch)
+    print("Created chunks")
     openai_api_key = st.session_state.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
     embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, disallowed_special=())
     vectorstore = FAISS.from_documents(chunks, embeddings)
+
+    return vectorstore
+
+def unzip_file(zip_file):
+    # get the file name without extension
+    file_name = os.path.splitext(zip_file.name)[0]
+    branch = file_name.split('-')[-1]
+
+    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+        unzip_dir = 'unzipped_files'
+        zip_ref.extractall(unzip_dir)
+        return unzip_dir + '/' + file_name, branch
+
+def create_vectorstore(unzip_path, branch):
+    vectorstore = create_vector(unzip_path, branch)
+    try:
+        os.remove(unzip_path)
+    except:
+        print("Error while deleting directory ", unzip_path)
+        # remove every file in the directory
+        for root, dirs, files in os.walk(unzip_path):
+            for file in files:
+                os.remove(os.path.join(root, file))
+        pass
 
     return vectorstore

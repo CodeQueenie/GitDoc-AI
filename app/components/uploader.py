@@ -1,4 +1,8 @@
 import streamlit as st
+import requests
+import zipfile
+from io import BytesIO
+import os
 
 def load_docs():
     col1, col2 = st.columns(2)
@@ -7,6 +11,23 @@ def load_docs():
     with col2:
         st.slider('Chunk Overlap', min_value=0, max_value=500, value=100, key="chunk_overlap")
 
-    uploaded_file = st.file_uploader("Upload Zip file", type=["zip"])
+    uploaded_file = st.file_uploader("If repo is private upload zip file (Optional)", type=["zip"])
     if uploaded_file is not None:
         return uploaded_file
+    
+
+def load_github_docs(document_url, branch='master'):
+    unzip_path = 'unzipped_files' + '/' + os.path.splitext(document_url.split('/')[-1])[0] + '-' + branch
+    document_url = document_url + "/archive/refs/heads/" + branch + ".zip"
+    temp_dir = os.path.join(os.getcwd(), 'unzipped_files')
+    response = requests.get(document_url)
+    if response.status_code == 200:
+        zip_data = BytesIO(response.content)
+        with zipfile.ZipFile(zip_data, 'r') as zip_ref:
+            zip_ref.extractall(temp_dir)
+
+        return unzip_path, branch
+
+    else:
+        st.error(f"Failed to download the ZIP file. Status code: {response.status_code}")
+        return None

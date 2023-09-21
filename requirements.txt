@@ -5,6 +5,7 @@ nemoguardrails==0.4.0
 streamlit-feedback
 PyPDF2
 openai
+requests
 tiktoken
 faiss-cpu
 python-docx
