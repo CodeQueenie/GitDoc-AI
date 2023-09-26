@@ -2,6 +2,15 @@
 
 > Created the GitDoc AI app to improve knowledge retrieval and support from documentation. Users can effortlessly engage with their chosen documentation or GitHub repositories through a Language Model (LLM).
 
+## Demo 
+- [Demo video](https://github.com/SSK-14/GitDoc-AI/blob/main/assets/gitdoc-demo.mp4)
+<div  style={{ display: 'flex' }}>
+<img src="assets/gitdoc-ai.png" alt="Alt Text" height="450px">
+<img height="450px" alt="Alt" src="https://github.com/SSK-14/GitDoc-AI/assets/45158568/c3bbab18-3b84-4ecf-b0ca-a5d4c7dd8f50">
+</div>
+
+
+
 ## Key Features 💡
 - 📖 **Rich Documentation Access:** Instantly access project documentation, READMEs, code snippets, and more.
 - 🌟 **Interactive Chat:** Engage with GitDoc for info, questions, and code insights.
