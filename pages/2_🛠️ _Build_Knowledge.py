@@ -23,16 +23,18 @@ def main():
              1. Enter the documentation repo url.
              2. If repo is private download repo as zip file and upload.
              """)
-            st.caption("Note: We will use only the pdf and md files for knowledge base creation.")
+            st.caption("Note: If file type is set to Docs only the pdf and md files are used.")
             if st.session_state['vectorstore'] is None:
-                col1, col2 = st.columns([3, 1])
+                col1, col2, col3 = st.columns([4,2,2])
                 with col1:
                     document_url = st.text_input(
                     "Enter the documentation repo url",
                     placeholder="Example: https://github.com/streamlit/docs")
                 with col2:
+                    file_type = st.radio("Include File type",["All", "Docs"],horizontal=True)
+                with col3:
                     branch = st.text_input(
-                    "Enter the branch name",
+                    "Enter the branch",
                     value="master",
                     placeholder="Example: master")
                 uploaded_file = load_docs()
@@ -45,7 +47,7 @@ def main():
                             unzip_path, branch = unzip_file(uploaded_file)
                         else:
                             unzip_path, branch = load_github_docs(document_url, branch)
-                        st.session_state['vectorstore'] = create_vectorstore(unzip_path, branch)
+                        st.session_state['vectorstore'] = create_vectorstore(unzip_path, file_type, branch)
                     except Exception as e:
                         st.error(e)
 

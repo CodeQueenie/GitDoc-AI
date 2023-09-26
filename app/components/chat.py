@@ -33,7 +33,6 @@ def display_source(document):
                 col.caption(caption)
                 # col.caption(f"{metadata_list[i]['score']}")   // uncomment to display score
 
-
 def display_chat(chain=qa_chain, input_format=None, output_format=None):
     initialise()
     for message in st.session_state.messages:
