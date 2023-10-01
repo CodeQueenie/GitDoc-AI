@@ -19,35 +19,38 @@ def main():
     build_form = st.empty()
     if st.session_state['vectorstore'] is None:
         with build_form.form("my_form"):
-            st.write("""
+            st.caption("""
              1. Enter the documentation repo url.
              2. If repo is private download repo as zip file and upload.
              """)
-            st.caption("Note: If file type is set to Docs only the pdf and md files are used.")
             if st.session_state['vectorstore'] is None:
-                col1, col2, col3 = st.columns([4,2,2])
+                col1, col2 = st.columns([4,2])
                 with col1:
                     document_url = st.text_input(
                     "Enter the documentation repo url",
                     placeholder="Example: https://github.com/streamlit/docs")
                 with col2:
-                    file_type = st.radio("Include File type",["All", "Docs"],horizontal=True)
-                with col3:
                     branch = st.text_input(
                     "Enter the branch",
                     value="master",
                     placeholder="Example: master")
+
+                file_types = st.multiselect(
+                'Select the file types to be used',
+                ['.md', '.pdf', '.mdx', '.py', '.js', '.java', '.cpp', '.html', '.css', '.php', '.c', '.h', '.rb', '.swift', '.go', '.ts', '.xml', '.json', '.yaml', '.sql', '.sh', '.pl', '.r', '.m', '.scala', '.kotlin', '.dart', '.lua', '.vb', '.as', '.asm', '.matlab', '.v', '.html', '.jsx', '.tsx', '.scss', '.sass', '.less', '.coffee', '.yml', '.ini', '.cfg', '.txt', '.log', '.json', '.yaml', '.xml'],
+                ['.md', '.pdf'])
                 uploaded_file = load_docs()
 
                 submitted = st.form_submit_button("Create knowledge base")
                 if submitted and document_url != "":
                     try:
-                        st.session_state['document_url'] = document_url
-                        if uploaded_file is not None:
-                            unzip_path, branch = unzip_file(uploaded_file)
-                        else:
-                            unzip_path, branch = load_github_docs(document_url, branch)
-                        st.session_state['vectorstore'] = create_vectorstore(unzip_path, file_type, branch)
+                        with st.spinner('Please Wait, AI is cooking...'):
+                            st.session_state['document_url'] = document_url
+                            if uploaded_file is not None:
+                                unzip_path, branch = unzip_file(uploaded_file)
+                            else:
+                                unzip_path, branch = load_github_docs(document_url, branch)
+                            st.session_state['vectorstore'] = create_vectorstore(unzip_path, file_types, branch)
                     except Exception as e:
                         st.error(e)
 

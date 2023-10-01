@@ -53,28 +53,25 @@ def get_text_splitter():
         separators=["\n\n", "\n", " ", ""]
     )
 
-def process_folder(folder, file_type, branch):
+def process_folder(folder, file_types, branch):
     chunks = []
-    file_extensions = ['.py', '.js', '.java', '.cpp', '.html', '.css', '.php', '.c', '.h', '.rb', '.swift', '.go', '.ts', '.xml', '.json', '.yaml', '.sql', '.sh', '.pl', '.r', '.m', '.scala', '.kotlin', '.dart', '.lua', '.vb', '.as', '.asm', '.matlab', '.v', '.html', '.jsx', '.tsx', '.scss', '.sass', '.less', '.coffee', '.yml', '.ini', '.cfg', '.txt', '.log', '.json', '.yaml', '.xml']
-
+    file_extensions = file_types
     for root, _, files in os.walk(folder):
         for file_name in files:
             file_path = os.path.join(root, file_name)
             relative_path = os.path.relpath(file_path, folder)
             relative_path = st.session_state["document_url"] + "/blob/" + branch + '/' + relative_path
 
-            if file_name.endswith(".pdf"):
+            if file_name.endswith(tuple(file_extensions)) is True and file_name.endswith(".pdf"):
                 chunks.extend(process_pdf_file(file_path, relative_path))
-            elif file_name.endswith(".md"):
-                chunks.extend(process_other_file(file_path, relative_path))
-            elif file_type == 'All' and file_name.endswith(tuple(file_extensions)) is True:
+            elif file_name.endswith(tuple(file_extensions)) is True:
                 chunks.extend(process_other_file(file_path, relative_path))
             else:
                 continue
     return chunks
 
-def create_vector(folder_path, file_type, branch = "main"):
-    chunks = process_folder(folder_path, file_type, branch)
+def create_vector(folder_path, file_types, branch = "main"):
+    chunks = process_folder(folder_path, file_types, branch)
     openai_api_key = st.session_state.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
     embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, disallowed_special=())
     vectorstore = FAISS.from_documents(chunks, embeddings)
@@ -90,8 +87,8 @@ def unzip_file(zip_file):
         zip_ref.extractall(unzip_dir)
         return unzip_dir + '/' + file_name, branch
 
-def create_vectorstore(unzip_path, file_type, branch):
-    vectorstore = create_vector(unzip_path, file_type, branch)
+def create_vectorstore(unzip_path, file_types, branch):
+    vectorstore = create_vector(unzip_path, file_types, branch)
     try:
         os.remove(unzip_path)
     except:
