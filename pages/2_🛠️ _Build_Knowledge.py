@@ -37,8 +37,8 @@ def main():
 
                 file_types = st.multiselect(
                 'Select the file types to be used',
-                ['.md', '.pdf', '.mdx', '.py', '.js', '.java', '.cpp', '.html', '.css', '.php', '.c', '.h', '.rb', '.swift', '.go', '.ts', '.xml', '.json', '.yaml', '.sql', '.sh', '.pl', '.r', '.m', '.scala', '.kotlin', '.dart', '.lua', '.vb', '.as', '.asm', '.matlab', '.v', '.html', '.jsx', '.tsx', '.scss', '.sass', '.less', '.coffee', '.yml', '.ini', '.cfg', '.txt', '.log', '.json', '.yaml', '.xml'],
-                ['.md', '.pdf'])
+                ['.md', '.pdf', '.mdx', '.py', '.js', '.java', '.cpp', '.html', '.css', '.php', '.c', '.h', '.rb', '.swift', '.go', '.ts', '.xml', '.json', '.yaml', '.sql', '.sh', '.pl', '.r', '.m', '.scala', '.kotlin', '.dart', '.lua', '.vb', '.as', '.asm', '.matlab', '.v', '.html', '.jsx', '.tsx', '.scss', '.sass', '.less', '.coffee', '.yml', '.ini', '.cfg', '.txt', '.log'],
+                ['.md'])
                 uploaded_file = load_docs()
 
                 submitted = st.form_submit_button("Create knowledge base")

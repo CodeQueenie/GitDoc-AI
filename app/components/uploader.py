@@ -17,7 +17,8 @@ def load_docs():
     
 
 def load_github_docs(document_url, branch='master'):
-    unzip_path = 'unzipped_files' + '/' + os.path.splitext(document_url.split('/')[-1])[0] + '-' + branch
+    filename = os.path.basename(document_url.rstrip('/').strip())
+    unzip_path = 'unzipped_files' + '/' + filename + '-' + branch
     document_url = document_url + "/archive/refs/heads/" + branch + ".zip"
     temp_dir = os.path.join(os.getcwd(), 'unzipped_files')
     response = requests.get(document_url)

@@ -39,21 +39,21 @@ git clone https://github.com/SSK-14/Cloud-Guardian.git
 1. Create virtual environment
 
    ```
-   $ pip3 install env
-   $ python3 -m venv env
-   $ source env/bin/activate
+   pip3 install env
+   python3 -m venv env
+   source env/bin/activate
    ```
 
 2. Install required libraries
 
    ```
-   $ pip3 install -r requirements.txt
+   pip3 install -r requirements.txt
    ```
 
 #### Activate your virtual environment
 
 ```
-$ source env/bin/activate
+source env/bin/activate
 ```
 
 #### Run the Streamlit app
