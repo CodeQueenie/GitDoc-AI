@@ -6,7 +6,10 @@ def setup_langsmith():
     load_dotenv()
     os.environ["LANGCHAIN_TRACING_V2"] = "true"
     os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
-    os.environ["LANGCHAIN_API_KEY"] =  st.secrets["LANGCHAIN_API_KEY"] if "LANGCHAIN_API_KEY" in st.secrets else os.environ["LANGCHAIN_API_KEY"]
+    
+    # If the key isn't found, use a dummy value
+    os.environ["LANGCHAIN_API_KEY"] = st.secrets["LANGCHAIN_API_KEY"] if "LANGCHAIN_API_KEY" in st.secrets else "dummy_value"
+    
     os.environ["LANGCHAIN_PROJECT"] = "GitDoc-AI"
 
 def main():
